@@ -5,63 +5,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSS Grid Layout Design</title>
   <style>
-    .container {
+    /* ✅ The main grid container */
+    .grid-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto;
-      gap: 5px;
+      grid-template-rows: repeat(6, 100px);
+      gap: 10px;
       background-color: white;
-      padding: 5px;
+      padding: 10px;
     }
 
-    .container > div {
+    /* ✅ All grid items have same styling */
+    .grid-item {
       background-color: green;
       color: white;
-      font-size: 24px;
-      text-align: center;
-      padding: 20px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* Layout positions */
-    .item1 {
-      grid-column: 1 / 4;  /* spans all three columns */
+    /* ✅ Explicit positioning — these must match tests */
+    #item1 {
+      grid-column: 1 / span 3; /* full width top */
     }
 
-    .item2 {
-      grid-row: 2 / 6;     /* tall column */
+    #item2 {
+      grid-row: 2 / span 4;    /* tall left block */
       grid-column: 1 / 2;
     }
 
-    .item3 {
+    #item3 {
       grid-column: 2 / 3;
+      grid-row: 2 / 3;
     }
 
-    .item4 {
+    #item4 {
       grid-column: 3 / 4;
+      grid-row: 2 / 3;
     }
 
-    .item5 {
+    #item5 {
       grid-column: 2 / 3;
+      grid-row: 3 / 4;
     }
 
-    .item6 {
+    #item6 {
       grid-column: 3 / 4;
+      grid-row: 3 / 4;
     }
 
-    .item7 {
+    #item7 {
       grid-column: 2 / 3;
+      grid-row: 4 / 5;
     }
 
-    .item8 {
+    #item8 {
       grid-column: 3 / 4;
+      grid-row: 4 / 5;
     }
 
-    .item9 {
+    #item9 {
       grid-column: 3 / 4;
+      grid-row: 5 / 6;
     }
 
-    .item10 {
-      grid-column: 1 / 4;  /* full width */
+    #item10 {
+      grid-column: 1 / span 3;
+      grid-row: 6 / 7;
     }
   </style>
 </head>
@@ -69,18 +80,17 @@
   <h2>CSS Grid Layout Design</h2>
   <p>Create the following layout using grid layout:</p>
 
-  <div class="container">
-    <div class="item1">1</div>
-    <div class="item2">2</div>
-    <div class="item3">3</div>
-    <div class="item4">4</div>
-    <div class="item5">5</div>
-    <div class="item6">6</div>
-    <div class="item7">7</div>
-    <div class="item8">8</div>
-    <div class="item9">9</div>
-    <div class="item10">10</div>
+  <div class="grid-container" id="grid-container">
+    <div class="grid-item" id="item1">1</div>
+    <div class="grid-item" id="item2">2</div>
+    <div class="grid-item" id="item3">3</div>
+    <div class="grid-item" id="item4">4</div>
+    <div class="grid-item" id="item5">5</div>
+    <div class="grid-item" id="item6">6</div>
+    <div class="grid-item" id="item7">7</div>
+    <div class="grid-item" id="item8">8</div>
+    <div class="grid-item" id="item9">9</div>
+    <div class="grid-item" id="item10">10</div>
   </div>
-
 </body>
 </html>
