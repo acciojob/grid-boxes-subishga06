@@ -1,278 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Grid Layout Design</title>
-    <!-- Load Tailwind CSS for utility classes like centering and font -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Define the main grid container */
-        .grid-container {
-            display: grid;
-            /* Defining the grid structure using areas for clarity */
-            grid-template-areas: 
-                "a1 a1 a1"
-                "a2 a3 a4"
-                "a2 a5 a6"
-                "a7 a8 a9"
-                "a7 a10 a10"
-                "a11 a11 a11"; /* Added a bottom row (a11) to balance Item 2's height */
-            
-            /* Define 3 equal columns */
-            grid-template-columns: repeat(3, 1fr);
-            
-            /* Define 6 rows. Using auto to let content determine height, but the layout structure is defined. */
-            grid-template-rows: 100px 100px 100px 100px 100px 100px;
-            
-            gap: 5px; /* The white lines in the image */
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            min-height: 80vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Grid Layout Design</title>
+  <style>
+    .container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 5px;
+      background-color: white;
+      padding: 5px;
+    }
 
-        /* Styling for all grid items */
-        .grid-item {
-            background-color: #008000; /* Dark green color from the image */
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: bold;
-            border-radius: 4px; /* Slight rounding for a cleaner look */
-        }
-        
-        /* Define the grid area for each numbered item based on the image */
-        #item-1 { grid-area: a1; } /* Spans 3 columns */
-        #item-2 { grid-area: a2; } /* Spans 2 rows */
-        #item-3 { grid-area: a3; } /* 1x1 */
-        #item-4 { grid-area: a4; } /* 1x1 */
-        #item-5 { 
-            grid-area: 3 / 2 / span 1 / span 2; /* Custom span to overlap a6/a9/a10 on row 3 and 4 */
-            /* Using manual grid-row/column properties here to match the image precisely 
-               as the area naming was challenging for the bottom right quadrant */
-            grid-column: 2 / span 2;
-            grid-row: 3 / span 1;
-        }
-        #item-6 { 
-            grid-area: 3 / 4 / span 2 / span 1; /* Manual span for 6 to match the height of 5 + 9 */
-            grid-column: 4 / 4; /* This should actually be column 3 */
-            grid-column: 4 / 5;
-            /* After recalculating the structure based on the image visual: */
-            /* The whole grid is 3 columns. Item 6 spans 2 rows in column 3. */
-            grid-row: 3 / span 2;
-            grid-column: 3 / 4;
-            height: 100%; /* Ensure it fills the rows */
-        }
-        #item-7 { 
-            grid-area: 4 / 2 / span 1 / span 1; /* Row 4, Col 2 */
-            grid-row: 4 / 5;
-            grid-column: 2 / 3;
-        }
-        #item-8 { 
-            grid-area: 4 / 3 / span 1 / span 1; /* Row 4, Col 3 */
-            grid-row: 4 / 5;
-            grid-column: 3 / 4;
-        }
-        #item-9 { 
-            /* Item 9 is placed below item 6 and spans 2 columns */
-            grid-row: 5 / 6;
-            grid-column: 3 / 4;
-        }
-        #item-10 { 
-            grid-row: 5 / 6;
-            grid-column: 2 / 3;
-            /* Item 10 is complex. Based on the visual, it spans 2 columns in the bottom row. */
-            grid-row: 6 / 7; /* Adjusting row to match the visual positioning */
-            grid-column: 2 / span 2;
-        }
-        
-        /* Re-simplifying the grid definition with explicit lines based on the visual blocks */
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            /* Defining rows to visually separate the boxes */
-            grid-template-rows: 100px 100px 100px 100px 100px; /* 5 rows in total based on the height of column 2/3 */
-            gap: 5px;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            min-height: 80vh;
-        }
-        
-        /* Applying final, correct spans based on visual matching */
-        #item-1 { grid-column: 1 / span 3; } /* Row 1, spans 3 columns */
-        
-        #item-2 { grid-row: 2 / span 4; } /* Starts Row 2, spans 4 rows down */
-        
-        #item-3 { grid-row: 2 / span 1; grid-column: 2 / span 1; } /* Row 2, Col 2, 1x1 */
-        #item-4 { grid-row: 2 / span 1; grid-column: 3 / span 1; } /* Row 2, Col 3, 1x1 */
-        
-        #item-5 { grid-row: 3 / span 1; grid-column: 2 / span 1; } /* Row 3, Col 2, 1x1 */
-        #item-6 { grid-row: 3 / span 2; grid-column: 3 / span 1; } /* Starts Row 3, Spans 2 rows, Col 3 */
-        
-        #item-7 { grid-row: 4 / span 1; grid-column: 2 / span 1; } /* Row 4, Col 2, 1x1 */
-        
-        #item-8 { grid-row: 5 / span 1; grid-column: 2 / span 1; } /* This appears to be Item 5/7 split - let's adjust */
+    .container > div {
+      background-color: green;
+      color: white;
+      font-size: 24px;
+      text-align: center;
+      padding: 20px;
+    }
 
-        /* Re-mapping the grid to perfectly match the visual lines */
-        
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 columns for precise layout */
-            grid-template-rows: 100px 100px 100px 100px 100px; /* 5 rows */
-            gap: 5px;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            min-height: 80vh;
-        }
+    /* Layout positions */
+    .item1 {
+      grid-column: 1 / 4;  /* spans all three columns */
+    }
 
-        #item-1 { grid-column: 1 / span 4; grid-row: 1 / span 1; } /* Full width */
-        #item-2 { grid-column: 1 / span 2; grid-row: 2 / span 4; } /* Spans 2 columns, 4 rows */
+    .item2 {
+      grid-row: 2 / 6;     /* tall column */
+      grid-column: 1 / 2;
+    }
 
-        #item-3 { grid-column: 3 / span 1; grid-row: 2 / span 1; } /* 1x1 */
-        #item-4 { grid-column: 4 / span 1; grid-row: 2 / span 1; } /* 1x1 */
+    .item3 {
+      grid-column: 2 / 3;
+    }
 
-        #item-5 { grid-column: 3 / span 2; grid-row: 3 / span 1; } /* Spans 2 columns */
+    .item4 {
+      grid-column: 3 / 4;
+    }
 
-        #item-6 { grid-column: 4 / span 1; grid-row: 4 / span 1; } /* 1x1 */
-        
-        #item-7 { grid-column: 3 / span 1; grid-row: 4 / span 1; } /* 1x1 */
-        #item-8 { grid-column: 4 / span 1; grid-row: 4 / span 1; } /* NO, 8 is next to 7 */
-        
-        /* The structure is actually 4 columns and 5 rows, but columns 3 and 4 are complex.
-           Let's use 3 columns and 5 rows. */
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr; /* 2 is wider than 3 and 4, then 3 and 4 are equal */
-            grid-template-rows: 100px 100px 100px 100px 100px; /* 5 rows for 2's height */
-            gap: 5px;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            min-height: 80vh;
-        }
+    .item5 {
+      grid-column: 2 / 3;
+    }
 
-        #item-1 { grid-column: 1 / span 3; grid-row: 1 / span 1; } /* Full width */
-        #item-2 { grid-column: 1 / span 1; grid-row: 2 / span 4; } /* Spans 4 rows */
-        
-        #item-3 { grid-column: 2 / span 1; grid-row: 2 / span 1; } /* 1x1 */
-        #item-4 { grid-column: 3 / span 1; grid-row: 2 / span 1; } /* 1x1 */
-        
-        #item-5 { grid-column: 2 / span 1; grid-row: 3 / span 1; } /* 1x1 */
-        #item-6 { grid-column: 3 / span 1; grid-row: 3 / span 2; } /* Spans 2 rows */
-        
-        #item-7 { grid-column: 2 / span 1; grid-row: 4 / span 1; } /* 1x1 */
-        #item-8 { grid-column: 3 / span 1; grid-row: 4 / span 1; } /* NO, 8 is next to 7, 6 is still spanning */
-        
-        /* FINAL CORRECT GRID MAPPING: 4 COLUMNS, 6 ROWS */
-        
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr; /* Column 1 is wider, 2/3/4 are equal */
-            grid-template-rows: 100px 100px 100px 100px 100px 100px; /* 6 rows for full height */
-            gap: 5px;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            min-height: 80vh;
-        }
-        
-        #item-1 { grid-column: 1 / span 4; grid-row: 1 / span 1; } /* R1, C1-4 */
-        #item-2 { grid-column: 1 / span 1; grid-row: 2 / span 5; } /* R2-6, C1 */
-        
-        #item-3 { grid-column: 2 / span 1; grid-row: 2 / span 2; } /* R2-3, C2 */
-        #item-4 { grid-column: 3 / span 2; grid-row: 2 / span 1; } /* R2, C3-4 */
-        
-        #item-5 { grid-column: 3 / span 1; grid-row: 3 / span 1; } /* R3, C3 */
-        
-        #item-6 { grid-column: 4 / span 1; grid-row: 3 / span 2; } /* R3-4, C4 */
-        
-        #item-7 { grid-column: 2 / span 2; grid-row: 4 / span 1; } /* R4, C2-3 */
-        
-        #item-8 { grid-column: 2 / span 1; grid-row: 5 / span 1; } /* R5, C2 */
-        #item-9 { grid-column: 3 / span 2; grid-row: 5 / span 1; } /* R5, C3-4 */
-        
-        #item-10 { grid-column: 2 / span 3; grid-row: 6 / span 1; } /* R6, C2-4 (Full bottom row) */
+    .item6 {
+      grid-column: 3 / 4;
+    }
 
-        /* Let's try to match the height of 2 to the rest of the elements */
-        /* Reverting to a 3-column, 5-row simple structure, using column/row spans visually */
-        
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr; /* 3 columns */
-            grid-template-rows: repeat(5, 1fr); /* 5 rows to contain everything */
-            gap: 5px;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            min-height: 80vh;
-        }
+    .item7 {
+      grid-column: 2 / 3;
+    }
 
-        #item-1 { grid-column: 1 / span 3; grid-row: 1 / span 1; } /* Full top row */
-        #item-2 { grid-column: 1 / span 1; grid-row: 2 / span 4; } /* Spans 4 rows on column 1 */
+    .item8 {
+      grid-column: 3 / 4;
+    }
 
-        #item-3 { grid-column: 2 / span 1; grid-row: 2 / span 1; } /* R2, C2 */
-        #item-4 { grid-column: 3 / span 1; grid-row: 2 / span 1; } /* R2, C3 */
+    .item9 {
+      grid-column: 3 / 4;
+    }
 
-        #item-5 { grid-column: 2 / span 2; grid-row: 3 / span 1; } /* R3, C2-3 (Full mid row) */
-
-        #item-6 { grid-column: 3 / span 1; grid-row: 4 / span 1; } /* R4, C3 */
-        
-        #item-7 { grid-column: 2 / span 1; grid-row: 4 / span 1; } /* R4, C2 */
-        #item-8 { grid-column: 3 / span 1; grid-row: 4 / span 1; } /* NO, this is wrong */
-        
-        /* The most accurate mapping uses 5 rows and 4 columns */
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr; /* 4 columns */
-            grid-template-rows: repeat(5, 1fr); /* 5 rows */
-            gap: 5px;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            min-height: 80vh;
-        }
-
-        #item-1 { grid-column: 1 / span 4; grid-row: 1 / span 1; } /* R1, C1-4 */
-        #item-2 { grid-column: 1 / span 1; grid-row: 2 / span 4; } /* R2-5, C1 */
-
-        #item-3 { grid-column: 2 / span 1; grid-row: 2 / span 1; } /* R2, C2 */
-        #item-4 { grid-column: 3 / span 2; grid-row: 2 / span 1; } /* R2, C3-4 */
-
-        #item-5 { grid-column: 2 / span 2; grid-row: 3 / span 1; } /* R3, C2-3 */
-
-        #item-6 { grid-column: 4 / span 1; grid-row: 3 / span 2; } /* R3-4, C4 */
-        
-        #item-7 { grid-column: 2 / span 1; grid-row: 4 / span 1; } /* R4, C2 */
-        #item-8 { grid-column: 3 / span 1; grid-row: 4 / span 1; } /* R4, C3 */
-        
-        #item-9 { grid-column: 4 / span 1; grid-row: 5 / span 1; } /* R5, C4 */
-        
-        #item-10 { grid-column: 2 / span 2; grid-row: 5 / span 1; } /* R5, C2-3 */
-        
-    </style>
+    .item10 {
+      grid-column: 1 / 4;  /* full width */
+    }
+  </style>
 </head>
-<body class="p-4 bg-gray-100">
-    <h1 class="text-3xl font-bold mb-6 text-center">CSS Grid Layout Design</h1>
-    <p class="mb-4 text-center">Create the following layout using grid layout:</p>
-    
-    <div class="grid-container">
-        <!-- The numbers must be 1 to 10. The 11th cell is just padding. -->
-        <div class="grid-item" id="item-1">1</div>
-        <div class="grid-item" id="item-2">2</div>
-        <div class="grid-item" id="item-3">3</div>
-        <div class="grid-item" id="item-4">4</div>
-        <div class="grid-item" id="item-5">5</div>
-        <div class="grid-item" id="item-6">6</div>
-        <div class="grid-item" id="item-7">7</div>
-        <div class="grid-item" id="item-8">8</div>
-        <div class="grid-item" id="item-9">9</div>
-        <div class="grid-item" id="item-10">10</div>
-    </div>
-    
+<body>
+  <h2>CSS Grid Layout Design</h2>
+  <p>Create the following layout using grid layout:</p>
+
+  <div class="container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+    <div class="item6">6</div>
+    <div class="item7">7</div>
+    <div class="item8">8</div>
+    <div class="item9">9</div>
+    <div class="item10">10</div>
+  </div>
+
 </body>
 </html>
