@@ -1,23 +1,53 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Grid Layout</title>
+  <style>
+    /* Apply CSS Grid to the body with id "grid" */
+    #grid {
+      display: grid;                        /* Enable CSS Grid */
+      grid-template-columns: repeat(5, 1fr); /* 5 equal columns */
+      gap: 10px;                             /* Space between items */
+      padding: 20px;
+    }
 
-<html>
-  <head>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
+    /* Styling for grid items */
+    #grid div {
+      background-color: #3498db;
+      color: white;
+      font-size: 24px;
+      text-align: center;
+      padding: 40px 0;                       /* Height of each box */
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
 
-  <body>
-    <body id="grid">
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-      <div>5</div>
-      <div>6</div>
-      <div>7</div>
-      <div>8</div>
-      <div>9</div>
-      <div>10</div>
-    </body>
-    <script type="text/javascript" src="./script.js"></script>
-  </body>
+    /* Responsive layout: reduce columns on smaller screens */
+    @media (max-width: 800px) {
+      #grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      #grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body id="grid">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+  <div>7</div>
+  <div>8</div>
+  <div>9</div>
+  <div>10</div>
+</body>
 </html>
